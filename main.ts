@@ -1,4 +1,4 @@
-//% weight=0 color=#b9a0e6 icon="\uf001" block="MP3 Player"
+//% weight=0 color=#b9a0e6 icon="\uf001" block="MP3 PRO-Player"
 namespace DFPlayerPro {
     
     let MP3_tx = SerialPin.P1
@@ -16,7 +16,7 @@ namespace DFPlayerPro {
      * @param pinRX to pinRX ,eg: SerialPin.P2
      * @param pinTX to pinTX ,eg: SerialPin.P1
     */
-    //% blockId="DFPlayerPro_setSerial" block="set DFPlayer pro RX to %pinTX| TX to %pinRX"
+    //% blockId="DFPlayerPro_setSerial" block="set DFPlayer PRO RX to %pinTX| TX to %pinRX"
     //% weight=100 blockGap=20
     export function setSerial(pinTX: SerialPin, pinRX: SerialPin): void {
         MP3_tx = pinTX;
