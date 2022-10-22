@@ -1,5 +1,5 @@
 {
-    "name": "DFPlayer-PRO",
+    "name": "pxt-DFPlayer-PRO",
     "description": "",
     "dependencies": {
         "core": "*",
