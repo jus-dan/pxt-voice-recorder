@@ -78,6 +78,7 @@ namespace DFPlayerPro
         MP3_tx = pinTX
         MP3_rx = pinRX
         serial.setWriteLinePadding(0)
+        serial.setRxBufferSize(32)
         serial.redirect(
             MP3_tx,
             MP3_rx,
@@ -220,7 +221,7 @@ namespace DFPlayerPro
         writeSerial(command)
         while (waitForResponse) 
         {
-            basic.pause(10)
+            basic.pause(20)
         }
         return response
     }
@@ -232,7 +233,12 @@ namespace DFPlayerPro
     //% weight=100 blockGap=20
     export function MP3_playFilePathName(pathName: string): void 
     {
-
+        waitForResponse = true
+        let command = "AT+PLAYFILE=" + pathName
+        writeSerial(command)
+        while (waitForResponse) {
+            basic.pause(10)
+        }
     }
 
     /**
