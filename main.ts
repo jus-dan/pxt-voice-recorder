@@ -1,3 +1,5 @@
-basic.forever(function () {
-	
-})
+namespace DFPlayerPro {
+    export function testConnection(): string{
+        return "Hello World"
+    }
+}
