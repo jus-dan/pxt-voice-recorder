@@ -1,4 +1,3 @@
-//% weight=0 color=#b9a0e6 icon="\uf001" block="MP3 PRO-Player"
 namespace DFPlayerPro {
     
     let MP3_tx = SerialPin.P1
