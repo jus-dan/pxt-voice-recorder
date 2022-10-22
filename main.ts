@@ -8,7 +8,7 @@ namespace DFPlayerPro {
      * 
      */
     export function testConnection(): string{
-        return "Hello World"
+        return "Hello World "
     }
 
     /**
