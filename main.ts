@@ -8,7 +8,7 @@ namespace DFPlayerPro {
     }
 
 
-    export function initialize(number: pintx): string {
+    export function initialize(): string {
         return "Hello World"
     }
 }
