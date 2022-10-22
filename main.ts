@@ -125,7 +125,7 @@ namespace DFPlayerPro
    */
     //% blockId="MP3_getVol" block="get DFPlayer-PRO volume"
     //% subcategory="advanced" weight=100 blockGap=20
-    export function MP3_getVol(): string 
+    export function MP3_getVol(): number 
     {
         waitForResponse = true
         let command = "AT+VOL=?"
@@ -140,7 +140,7 @@ namespace DFPlayerPro
         /* return：VOL = [10] => try to get the "10" */
         response = response.substr(startIndex+1, endIndex-startIndex-1)
 
-        return response
+        return parseFloat(response)
     }
 
     /**
@@ -180,7 +180,7 @@ namespace DFPlayerPro
     */
     //% blockId="MP3_getCurFileNumber" block="file number playing"
     //% subcategory="advanced" weight=100 blockGap=20
-    export function MP3_getCurFileNumber(): string 
+    export function MP3_getCurFileNumber(): number 
     {
         waitForResponse = true
         let command = "AT+QUERY=1"
@@ -188,7 +188,7 @@ namespace DFPlayerPro
         while (waitForResponse) {
             basic.pause(10)
         }
-        return response
+        return parseFloat(response)
     }
 
     /**
@@ -196,7 +196,7 @@ namespace DFPlayerPro
     */
     //% blockId="MP3_getTotalFileNumber" block="total number of the files"
     //% weight=100 blockGap=20
-    export function MP3_getTotalFileNumber(): string
+    export function MP3_getTotalFileNumber(): number
     {
         waitForResponse = true
         let command = "AT+QUERY=2"
@@ -204,7 +204,7 @@ namespace DFPlayerPro
         while (waitForResponse) {
             basic.pause(10)
         }
-        return response
+        return parseFloat(response)
     }
 
 
