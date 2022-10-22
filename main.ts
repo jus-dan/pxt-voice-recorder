@@ -18,45 +18,45 @@ namespace DFPlayerPro {
      * types
      */
     export enum playType {
-        //% block="repeat one song"
+        //% blockId="repeat one song"
         type1 = 0x01,
-        //% block="repeat all"
+        //% blockId="repeat all"
         type2 = 0x02,
-        //% block="play one song and pause"
+        //% blockId="play one song and pause"
         type3 = 0x03,
-        //% block="Play randomly"
+        //% blockId="Play randomly"
         type4 = 0x04,
-        //% block="Repeat all in the folder"
+        //% blockId="Repeat all in the folder"
         type5 = 0x05
     }
     export enum controlType {
-        //% block="Play & Pause"
-        type1 = "PP",
-        //% block="next"
-        type2 = "NEXT",
-        //% block="last"
-        type3 = "LAST"
+        //% block="PP" blockId="Play & Pause"
+        type1 = 1,
+        //% block="NEXT" blockId="next"
+        type2 = 2,
+        //% block="LAST" blockId="last"
+        type3 = 3
     }
 
     export enum promtType {
-        //% block="promt ON"
-        type1 = "ON",
-        //% block="promt OFF"
-        type2 = "OFF"
+        //% block="ON" blockId="promt ON"
+        type1 = 1,
+        //% block="OFF" blockId="promt OFF"
+        type2 = 2
     }
     
     export enum ledType {
-        //% block="LED ON"
-        type1 = "ON",
-        //% block="LED OFF"
-        type2 = "OFF"
+        //% block="ON" blockId="LED ON"
+        type1 = 1,
+        //% block="OFF" blockId="LED OFF"
+        type2 = 2
     }
 
     export enum ampType {
-        //% block="amplifier ON"
-        type1 = "ON",
-        //% block="amplifier OFF"
-        type2 = "OFF"
+        //% block="ON" blockId="amplifier ON"
+        type1 = 1,
+        //% block="OFF" blockId="amplifier OFF"
+        type2 = 2
     }
 
     /**
@@ -64,10 +64,11 @@ namespace DFPlayerPro {
      * @param pinTX to pinTX ,eg: SerialPin.P1
     */
     //% blockId="MP3_setSerial" block="set DFPlayer-PRO RX to %pinTX| TX to %pinRX"
-    //% weight=100 blockGap=20
+    //% weight=50 blockGap=20
     export function MP3_setSerial(pinTX: SerialPin, pinRX: SerialPin): void {
-        MP3_tx = pinTX;
-        MP3_rx = pinRX;
+        MP3_tx = pinTX
+        MP3_rx = pinRX
+        serial.setWriteLinePadding(0)
         serial.redirect(
             MP3_tx,
             MP3_rx,
@@ -79,27 +80,32 @@ namespace DFPlayerPro {
     /**
      * 
     */
-    //% blockId="MP3_testConnection" block="set DFPlayer-PRO volume to %vol"
-    //% weight=100 blockGap=20
+    //% blockId="MP3_testConnection" block="test communication with DFPlayer-PRO"
+    //% subcategory="advanced" weight=100 blockGap=20
     export function MP3_testConnection(): string {
-        return "NOK"
+        let command = "AT"
+        writeSerial(command)
+        basic.pause(100)
+        return "OK"
     }
 
 
     /**
      * 
     */
-    //% blockId="MP3_setVol" block="set DFPlayer-PRO volume to %vol"
-    //% weight=100 blockGap=20
-    export function MP3_setVol(vol: NumberFormat.UInt8LE): string {
-        return "NOK"
+    //% blockId="MP3_setVol" block="set DFPlayer-PRO volume to %volume"
+    //% weight=100 blockGap=20 volume.min=0 volume.max=30 volume.defl=10
+    export function MP3_setVol(volume?: number): void {
+        let command = "AT+VOL=" + volume.toString()
+        writeSerial(command)
+        basic.pause(100)
     }
 
     /**
     * 
    */
-    //% blockId="MP3_getVol" block="set DFPlayer-PRO volume to %vol"
-    //% weight=100 blockGap=20
+    //% blockId="MP3_getVol" block="get DFPlayer-PRO volume"
+    //% subcategory="advanced" weight=100 blockGap=20
     export function MP3_getVol(): string {
         return "NOK"
     }
@@ -107,26 +113,26 @@ namespace DFPlayerPro {
     /**
      * 
     */
-    //% blockId="MP3_setPlayMode" block="..."
+    //% blockId="MP3_setPlayMode" block="Control playback mode %mode "
     //% weight=100 blockGap=20
-    export function MP3_setPlayMode(mode: playType): string {
-        return "NOK"
+    export function MP3_setPlayMode(mode: playType): void {
+
     }
 
     /**
      * 
     */
-    //% blockId="MP3_control" block="..."
+    //% blockId="MP3_control" block="Control playing %mode"
     //% weight=100 blockGap=20
-    export function MP3_control(mode: controlType): string {
-        return "NOK"
+    export function MP3_control(mode: controlType): void {
+
     }
 
     /**
      * 
     */
-    //% blockId="MP3_getCurFileNumber" block="..."
-    //% weight=100 blockGap=20
+    //% blockId="MP3_getCurFileNumber" block="file number playing"
+    //% subcategory="advanced" weight=100 blockGap=20
     export function MP3_getCurFileNumber(): string {
         return "NOK"
     }
@@ -134,7 +140,7 @@ namespace DFPlayerPro {
     /**
      * 
     */
-    //% blockId="MP3_getTotalFile" block="..."
+    //% blockId="MP3_getTotalFile" block="total number of the files"
     //% weight=100 blockGap=20
     export function MP3_getTotalFile(): string {
         return "NOK"
@@ -144,8 +150,8 @@ namespace DFPlayerPro {
     /**
      * 
     */
-    //% blockId="MP3_getFileName" block="..."
-    //% weight=100 blockGap=20
+    //% blockId="MP3_getFileName" block="file name playing"
+    //% subcategory="advanced" weight=100 blockGap=20
     export function MP3_getFileName(): string {
         return "NOK"
     }
@@ -153,46 +159,53 @@ namespace DFPlayerPro {
     /**
      * 
     */
-    //% blockId="MP3_playSpecFile" block="..."
+    //% blockId="MP3_playFilePathName" block="play filename %pathName"
     //% weight=100 blockGap=20
-    export function MP3_playSpecFile(path: string): string {
-        return "NOK"
+    export function MP3_playFilePathName(pathName: string): void {
+
     }
 
     /**
      * 
     */
-    //% blockId="MP3_playFileNum" block="..."
+    //% blockId="MP3_playFileNum" block="play filenumber %fileNumber"
     //% weight=100 blockGap=20
-    export function MP3_playFileNum(number: NumberFormat.UInt8LE): string {
-        return "NOK"
+    export function MP3_playFileNum(fileNumber: number): void {
+
     }
 
     /**
      * 
     */
-    //% blockId="MP3_promt" block="..."
-    //% weight=100 blockGap=20
-    export function MP3_promt(mode: promtType): string {
-        return "NOK"
+    //% blockId="MP3_promtMode" block="prompt mode to %promtType"
+    //% subcategory="advanced" weight=100 blockGap=20
+    export function MP3_promtMode(mode: promtType): void {
+
     }
 
     /**
      * 
     */
-    //% blockId="MP3_led" block="..."
-    //% weight=100 blockGap=20
-    export function MP3_led(mode: ledType): string {
-        return "NOK"
+    //% blockId="MP3_ledMode" block="led mode to %ledType"
+    //% subcategory="advanced"subcategory="advanced" weight=100 blockGap=20
+    export function MP3_ledMode(mode: ledType): void {
+ 
     }
 
     /**
      * 
     */
-    //% blockId="MP3_amplifier" block="..."
-    //% weight=100 blockGap=20
-    export function MP3_amplifier(mode: ampType): string {
-        return "NOK"
+    //% blockId="MP3_amplifierMode" block="amplifier mode to %ampType"
+    //% subcategory="advanced" blockExternalInputs=true weight=100 blockGap=20
+    export function MP3_amplifierMode(mode: ampType): void {
+
+    }
+
+    /**
+     * send to serial with endline characters
+     */
+    function writeSerial(cmd: string): void{
+        serial.writeString(cmd + "\r\n")
     }
 
 }
