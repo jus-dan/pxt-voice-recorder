@@ -14,7 +14,7 @@ namespace DFPlayerPro
      */
     let MP3_tx = SerialPin.P1
     let MP3_rx = SerialPin.P2
-    let expectResponse = false
+    let waitForResponse = false
     let response = ""
     
     /**
@@ -46,25 +46,25 @@ namespace DFPlayerPro
     export enum promtType 
     {
         //% block="ON" blockId="promt ON"
-        type1 = 1,
+        promtOn = 1,
         //% block="OFF" blockId="promt OFF"
-        type2 = 2
+        promtOff = 2
     }
     
     export enum ledType 
     {
         //% block="ON" blockId="LED ON"
-        type1 = 1,
+        ledOn = 1,
         //% block="OFF" blockId="LED OFF"
-        type2 = 2
+        ledOff = 2
     }
 
     export enum ampType 
     {
         //% block="ON" blockId="amplifier ON"
-        type1 = 1,
+        ampOn = 1,
         //% block="OFF" blockId="amplifier OFF"
-        type2 = 2
+        ampOff = 2
     }
 
     /**
@@ -93,10 +93,10 @@ namespace DFPlayerPro
     //% subcategory="advanced" weight=100 blockGap=20
     export function MP3_testConnection(): string 
     {
-        expectResponse = true
+        waitForResponse = true
         let command = "AT"
         writeSerial(command)
-        while (expectResponse)
+        while (waitForResponse)
         {
            basic.pause(10)
         }
@@ -111,10 +111,10 @@ namespace DFPlayerPro
     //% weight=100 blockGap=20 volume.min=0 volume.max=30 volume.defl=10
     export function MP3_setVol(volume?: number): void 
     {
-        expectResponse = true
+        waitForResponse = true
         let command = "AT+VOL=" + volume.toString()
         writeSerial(command)
-        while (expectResponse) 
+        while (waitForResponse)
         {
             basic.pause(10)
         }
@@ -127,13 +127,19 @@ namespace DFPlayerPro
     //% subcategory="advanced" weight=100 blockGap=20
     export function MP3_getVol(): string 
     {
-        expectResponse = true
+        waitForResponse = true
         let command = "AT+VOL=?"
         writeSerial(command)
-        while (expectResponse) 
+        while (waitForResponse)
         {
             basic.pause(10)
         }
+
+        let startIndex = response.indexOf("[")
+        let endIndex = response.indexOf("]")
+        /* return：VOL = [10] => try to get the "10" */
+        response = response.substr(startIndex+1, endIndex-startIndex-1)
+
         return response
     }
 
@@ -144,10 +150,10 @@ namespace DFPlayerPro
     //% weight=100 blockGap=20
     export function MP3_setPlayMode(mode: playType): void 
     {
-        expectResponse = true
+        waitForResponse = true
         let command = "AT+PLAYMODE=" + mode
         writeSerial(command)
-        while (expectResponse) 
+        while (waitForResponse)
         {
             basic.pause(10)
         }
@@ -160,10 +166,11 @@ namespace DFPlayerPro
     //% weight=100 blockGap=20
     export function MP3_control(mode: controlType): void 
     {
-        expectResponse = true
+        waitForResponse = true
         let command = "AT+PLAY=" + mode
         writeSerial(command)
-        while (expectResponse) {
+        while (waitForResponse) 
+        {
             basic.pause(10)
         }
     }
@@ -175,17 +182,29 @@ namespace DFPlayerPro
     //% subcategory="advanced" weight=100 blockGap=20
     export function MP3_getCurFileNumber(): string 
     {
-        return "NOK"
+        waitForResponse = true
+        let command = "AT+QUERY=1"
+        writeSerial(command)
+        while (waitForResponse) {
+            basic.pause(10)
+        }
+        return response
     }
 
     /**
      * 
     */
-    //% blockId="MP3_getTotalFile" block="total number of the files"
+    //% blockId="MP3_getTotalFileNumber" block="total number of the files"
     //% weight=100 blockGap=20
-    export function MP3_getTotalFile(): string 
+    export function MP3_getTotalFileNumber(): string
     {
-        return "NOK"
+        waitForResponse = true
+        let command = "AT+QUERY=2"
+        writeSerial(command)
+        while (waitForResponse) {
+            basic.pause(10)
+        }
+        return response
     }
 
 
@@ -196,7 +215,14 @@ namespace DFPlayerPro
     //% subcategory="advanced" weight=100 blockGap=20
     export function MP3_getFileName(): string 
     {
-        return "NOK"
+        waitForResponse = true
+        let command = "AT+QUERY=5"
+        writeSerial(command)
+        while (waitForResponse) 
+        {
+            basic.pause(10)
+        }
+        return response
     }
 
     /**
@@ -216,10 +242,10 @@ namespace DFPlayerPro
     //% weight=100 blockGap=20
     export function MP3_playFileNum(fileNumber: number): void 
     {
-        expectResponse = true
+        waitForResponse = true
         let command = "AT+PLAYNUM=" + fileNumber.toString()
         writeSerial(command)
-        while (expectResponse) 
+        while (waitForResponse)
         {
             basic.pause(10)
         }
@@ -232,7 +258,23 @@ namespace DFPlayerPro
     //% subcategory="advanced" weight=100 blockGap=20
     export function MP3_promtMode(mode: promtType): void 
     {
+        waitForResponse = true
+        let command = "AT+PROMPT="
 
+        if(mode == promtType.promtOn)
+        {
+            command = command + "ON"
+        }
+        if(mode == promtType.promtOff)
+        {
+            command = command + "OFF"
+        }
+
+        writeSerial(command)
+        while (waitForResponse) 
+        {
+            basic.pause(10)
+        }
     }
 
     /**
@@ -242,7 +284,23 @@ namespace DFPlayerPro
     //% subcategory="advanced"subcategory="advanced" weight=100 blockGap=20
     export function MP3_ledMode(mode: ledType): void 
     {
- 
+        waitForResponse = true
+        let command = "AT+LED="
+
+        if (mode == ledType.ledOn)
+        {
+            command = command + "ON"
+        }
+        if (mode == ledType.ledOff)
+        {
+            command = command + "OFF"
+        }
+
+        writeSerial(command)
+        while (waitForResponse) 
+        {
+            basic.pause(10)
+        }
     }
 
     /**
@@ -252,7 +310,23 @@ namespace DFPlayerPro
     //% subcategory="advanced" blockExternalInputs=true weight=100 blockGap=20
     export function MP3_amplifierMode(mode: ampType): void 
     {
+        waitForResponse = true
+        let command = "AT+AMP="
 
+        if (mode == ampType.ampOn) 
+        {
+            command = command + "ON"
+        }
+        if (mode == ampType.ampOff) 
+        {
+            command = command + "OFF"
+        }
+
+        writeSerial(command)
+        while (waitForResponse) 
+        {
+            basic.pause(10)
+        }
     }
 
     /**
@@ -272,22 +346,19 @@ namespace DFPlayerPro
         response = serial.readUntil("\r\n")
         
         /* check if we wait for a response */
-        if(expectResponse == true)
+        if (waitForResponse == true)
         {
-            basic.showIcon(IconNames.Yes)
             /* prepare data */
             if (response.length > 0) 
             {
                 response = response.replace("\r\n", "")
-                /* for debugging */
-                basic.showString(response)
                 /* indicate response arrived */
-                expectResponse = false;
+                waitForResponse = false;
             }
         }
         else
         {
-            basic.showIcon(IconNames.No)
+
         }
     }
 
