@@ -23,24 +23,24 @@ namespace DFPlayerPro
     export enum playType 
     {
         //% blockId="repeat one song"
-        type1 = 0x01,
+        repeatOneSong = 0x01,
         //% blockId="repeat all"
-        type2 = 0x02,
+        repeatAll = 0x02,
         //% blockId="play one song and pause"
-        type3 = 0x03,
+        playOneSongAndPause = 0x03,
         //% blockId="Play randomly"
-        type4 = 0x04,
+        playRandomly = 0x04,
         //% blockId="Repeat all in the folder"
-        type5 = 0x05
+        repeatAllInFolder = 0x05
     }
     export enum controlType 
     {
-        //% block="PP" blockId="Play & Pause"
-        type1 = 1,
+        //% block="PlayPause" blockId="Play & Pause"
+        playPause = 1,
         //% block="NEXT" blockId="next"
-        type2 = 2,
+        next = 2,
         //% block="LAST" blockId="last"
-        type3 = 3
+        last = 3
     }
 
     export enum promtType 
@@ -144,7 +144,13 @@ namespace DFPlayerPro
     //% weight=100 blockGap=20
     export function MP3_setPlayMode(mode: playType): void 
     {
-
+        expectResponse = true
+        let command = "AT+PLAYMODE=" + mode
+        writeSerial(command)
+        while (expectResponse) 
+        {
+            basic.pause(10)
+        }
     }
 
     /**
@@ -154,7 +160,12 @@ namespace DFPlayerPro
     //% weight=100 blockGap=20
     export function MP3_control(mode: controlType): void 
     {
-
+        expectResponse = true
+        let command = "AT+PLAY=" + mode
+        writeSerial(command)
+        while (expectResponse) {
+            basic.pause(10)
+        }
     }
 
     /**
@@ -203,8 +214,15 @@ namespace DFPlayerPro
     */
     //% blockId="MP3_playFileNum" block="play filenumber %fileNumber"
     //% weight=100 blockGap=20
-    export function MP3_playFileNum(fileNumber: number): void {
-
+    export function MP3_playFileNum(fileNumber: number): void 
+    {
+        expectResponse = true
+        let command = "AT+PLAYNUM=" + fileNumber.toString()
+        writeSerial(command)
+        while (expectResponse) 
+        {
+            basic.pause(10)
+        }
     }
 
     /**
@@ -261,9 +279,11 @@ namespace DFPlayerPro
             if (response.length > 0) 
             {
                 response = response.replace("\r\n", "")
+                /* for debugging */
+                basic.showString(response)
+                /* indicate response arrived */
+                expectResponse = false;
             }
-            /* indicate response arrived */
-            expectResponse = false;
         }
         else
         {
