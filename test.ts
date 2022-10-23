@@ -13,9 +13,9 @@ input.onButtonPressed(Button.B, function () {
     } else if (state == 2) {
         DFPlayerPro.MP3_ledMode(DFPlayerPro.ledType.ledOff)
     } else if (state == 3) {
-        DFPlayerPro.MP3_promtMode(DFPlayerPro.promtType.promtOn)
+        DFPlayerPro.MP3_promtMode(DFPlayerPro.PromtType.promtOn)
     } else if (state == 4) {
-        DFPlayerPro.MP3_promtMode(DFPlayerPro.promtType.promtOff)
+        DFPlayerPro.MP3_promtMode(DFPlayerPro.PromtType.promtOff)
     } else if (state == 5) {
         DFPlayerPro.MP3_amplifierMode(
             DFPlayerPro.ampType.ampOn
@@ -47,21 +47,21 @@ input.onButtonPressed(Button.B, function () {
     } else if (state == 17) {
         DFPlayerPro.MP3_playFilePathName("/003.mp3")
     } else if (state == 18) {
-        DFPlayerPro.MP3_control(DFPlayerPro.controlType.playPause)
+        DFPlayerPro.MP3_control(DFPlayerPro.ControlType.playPause)
     } else if (state == 19) {
-        DFPlayerPro.MP3_control(DFPlayerPro.controlType.next)
+        DFPlayerPro.MP3_control(DFPlayerPro.ControlType.next)
     } else if (state == 20) {
-        DFPlayerPro.MP3_control(DFPlayerPro.controlType.last)
+        DFPlayerPro.MP3_control(DFPlayerPro.ControlType.last)
     } else if (state == 21) {
-        DFPlayerPro.MP3_setPlayMode(DFPlayerPro.playType.repeatOneSong)
+        DFPlayerPro.MP3_setPlayMode(DFPlayerPro.PlayType.repeatOneSong)
     } else if (state == 22) {
-        DFPlayerPro.MP3_setPlayMode(DFPlayerPro.playType.repeatAll)
+        DFPlayerPro.MP3_setPlayMode(DFPlayerPro.PlayType.repeatAll)
     } else if (state == 23) {
-        DFPlayerPro.MP3_setPlayMode(DFPlayerPro.playType.playOneSongAndPause)
+        DFPlayerPro.MP3_setPlayMode(DFPlayerPro.PlayType.playOneSongAndPause)
     } else if (state == 24) {
-        DFPlayerPro.MP3_setPlayMode(DFPlayerPro.playType.playRandomly)
+        DFPlayerPro.MP3_setPlayMode(DFPlayerPro.PlayType.playRandomly)
     } else if (state == 25) {
-        DFPlayerPro.MP3_setPlayMode(DFPlayerPro.playType.repeatAllInFolder)
+        DFPlayerPro.MP3_setPlayMode(DFPlayerPro.PlayType.repeatAllInFolder)
     } else {
         basic.showIcon(IconNames.No)
     }

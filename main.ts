@@ -21,7 +21,7 @@ namespace DFPlayerPro
     /**
      * types
      */
-    export enum playType 
+    export enum PlayType 
     {
         //% blockId="repeat one song"
         repeatOneSong = 0x01,
@@ -34,7 +34,7 @@ namespace DFPlayerPro
         //% blockId="Repeat all in the folder"
         repeatAllInFolder = 0x05
     }
-    export enum controlType 
+    export enum ControlType 
     {
         //% block="PlayPause" blockId="Play & Pause"
         playPause = 1,
@@ -44,7 +44,7 @@ namespace DFPlayerPro
         last = 3
     }
 
-    export enum promtType 
+    export enum PromtType 
     {
         //% block="ON" blockId="promt ON"
         promtOn = 1,
@@ -159,7 +159,7 @@ namespace DFPlayerPro
     */
     //% blockId="MP3_setPlayMode" block="Control playback mode %mode "
     //% weight=100 blockGap=20
-    export function MP3_setPlayMode(mode: playType): void 
+    export function MP3_setPlayMode(mode: PlayType): void 
     {
         waitForResponse = true;
         let command = "AT+PLAYMODE=" + mode;
@@ -175,7 +175,7 @@ namespace DFPlayerPro
     */
     //% blockId="MP3_control" block="Control playing %mode"
     //% weight=100 blockGap=20
-    export function MP3_control(mode: controlType): void 
+    export function MP3_control(mode: ControlType): void 
     {
         waitForResponse = true;
         let command = "AT+PLAY=" + mode;
@@ -277,16 +277,16 @@ namespace DFPlayerPro
     */
     //% blockId="MP3_promtMode" block="prompt mode to %promtType"
     //% subcategory="advanced" weight=100 blockGap=20
-    export function MP3_promtMode(mode: promtType): void 
+    export function MP3_promtMode(mode: PromtType): void 
     {
         waitForResponse = true;
         let command = "AT+PROMPT=";
 
-        if(mode == promtType.promtOn)
+        if(mode == PromtType.promtOn)
         {
             command = command + "ON";
         }
-        if(mode == promtType.promtOff)
+        if(mode == PromtType.promtOff)
         {
             command = command + "OFF";
         }
