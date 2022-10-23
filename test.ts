@@ -31,7 +31,7 @@ input.onButtonPressed(Button.B, function () {
     } else if (state == 9) {
         basic.showNumber(DFPlayerPro.MP3_getCurFileNumber())
     } else if (state == 10) {
-        basic.showString(DFPlayerPro.MP3_getFileName())
+        basic.showString("DFPlayerPro.MP3_getFileName() not supported")
     } else if (state == 11) {
         DFPlayerPro.MP3_setVol(10)
     } else if (state == 12) {

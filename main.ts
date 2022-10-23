@@ -226,6 +226,7 @@ namespace DFPlayerPro
     */
     //% blockId="MP3_getFileName" block="file name playing"
     //% subcategory="advanced" weight=100 blockGap=20
+    /*
     export function MP3_getFileName(): string 
     {
         waitForResponse = true;
@@ -233,10 +234,11 @@ namespace DFPlayerPro
         writeSerial(command);
         while (waitForResponse) 
         {
-            basic.pause(20);
+            basic.pause(10);
         }
         return response;
     }
+    */
 
     /**
      * 
