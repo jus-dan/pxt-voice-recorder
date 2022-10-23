@@ -116,7 +116,7 @@ namespace DFPlayerPro
 
 
     /**
-     * 
+     * @param volume between 0-30
     */
     //% blockId="MP3_setVol" block="set DFPlayer-PRO volume to %volume"
     //% weight=100 blockGap=20 volume.min=0 volume.max=30 volume.defl=10
@@ -155,7 +155,7 @@ namespace DFPlayerPro
     }
 
     /**
-     * 
+     * @param mode select play type
     */
     //% blockId="MP3_setPlayMode" block="Control playback mode %mode "
     //% weight=100 blockGap=20
@@ -171,7 +171,7 @@ namespace DFPlayerPro
     }
 
     /**
-     * 
+     * @param mode select control type
     */
     //% blockId="MP3_control" block="Control playing %mode"
     //% weight=100 blockGap=20
@@ -241,7 +241,7 @@ namespace DFPlayerPro
     */
 
     /**
-     * 
+     * @param pathName "/test.mp3" or "foldername/song1.mp3"
     */
     //% blockId="MP3_playFilePathName" block="play filename %pathName"
     //% weight=100 blockGap=20
@@ -257,7 +257,7 @@ namespace DFPlayerPro
     }
 
     /**
-     * 
+     * @param fileNumber Play the file of the specified number (Play the first file if there is no such file)
     */
     //% blockId="MP3_playFileNum" block="play filenumber %fileNumber"
     //% weight=100 blockGap=20
@@ -273,7 +273,7 @@ namespace DFPlayerPro
     }
 
     /**
-     * 
+     * @param mode select promt type ("music" or "slave" when power up)
     */
     //% blockId="MP3_promtMode" block="prompt mode to %promtType"
     //% subcategory="advanced" weight=100 blockGap=20
@@ -299,7 +299,7 @@ namespace DFPlayerPro
     }
 
     /**
-     * 
+     * @param mode select LED behaviour (ON/OFF)
     */
     //% blockId="MP3_ledMode" block="led mode to %ledType"
     //% subcategory="advanced"subcategory="advanced" weight=100 blockGap=20
@@ -325,7 +325,7 @@ namespace DFPlayerPro
     }
 
     /**
-     * 
+     * @param mode switch amplifier ON/OFF to safe energy
     */
     //% blockId="MP3_amplifierMode" block="amplifier mode to %ampType"
     //% subcategory="advanced" blockExternalInputs=true weight=100 blockGap=20
