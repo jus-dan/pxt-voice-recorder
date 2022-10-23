@@ -13,7 +13,7 @@ namespace DFPlayerPro
      * local variables
      */
     let MP3_tx: SerialPin = SerialPin.P1;
-    let MP3_rx: SerialPin = SerialPin.P2;
+    let MP3_rx: SerialPin = SerialPin.P0;
     let waitForResponse: boolean = false;
     let response: string = "";
     
@@ -68,12 +68,12 @@ namespace DFPlayerPro
     }
 
     /**
-     * @param pinRX to pinRX ,eg: SerialPin.P2
-     * @param pinTX to pinTX ,eg: SerialPin.P1
+     * @param pinRX to pinRX ,eg: SerialPin.P1
+     * @param pinTX to pinTX ,eg: SerialPin.P0
     */
     //% blockId="MP3_setSerial" block="set DFPlayer-PRO RX to %pinTX| TX to %pinRX"
     //% weight=50 blockGap=20
-    export function MP3_setSerial(pinTX: SerialPin, pinRX: SerialPin): void 
+    export function MP3_setSerial(pinTX: SerialPin, pinRX: SerialPin): void
     {
         MP3_tx = pinTX;
         MP3_rx = pinRX;
