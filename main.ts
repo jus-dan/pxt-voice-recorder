@@ -16,6 +16,7 @@ namespace DFPlayerPro
     let MP3_rx: SerialPin = SerialPin.P0;
     let waitForResponse: boolean = false;
     let response: string = "";
+    let originalResponse: string = "";
     
     /**
      * types
@@ -101,6 +102,16 @@ namespace DFPlayerPro
             basic.pause(10);
         }
         return response;
+    }
+
+    /**
+     * 
+    */
+    //% blockId="MP3_getLastResponseMessage" block="get last response message"
+    //% subcategory="advanced" weight=100 blockGap=20
+    export function MP3_getLastResponseMessage(): string 
+    {
+        return originalResponse;
     }
 
 
@@ -354,11 +365,11 @@ namespace DFPlayerPro
         if (waitForResponse == true)
         {
             /* read a line */
-            response = serial.readUntil("\r\n");
+            originalResponse = serial.readUntil("\r\n");
             /* prepare data */
-            if (response.length > 0) 
+            if (originalResponse.length > 0)
             {
-                response = response.replace("\r\n", "");
+                response = originalResponse.replace("\r\n", "");
                 /* indicate response arrived */
                 waitForResponse = false;
             }
