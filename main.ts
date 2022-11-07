@@ -162,7 +162,7 @@ namespace DFPlayerPro
     export function MP3_setPlayMode(mode: PlayType): void 
     {
         waitForResponse = true;
-        let command = "AT+PLAYMODE=" + mode;
+        let command = "AT+PLAYMODE=" + mode.toString();
         writeSerial(command);
         while (waitForResponse)
         {
@@ -178,7 +178,7 @@ namespace DFPlayerPro
     export function MP3_control(mode: ControlType): void 
     {
         waitForResponse = true;
-        let command = "AT+PLAY=" + mode;
+        let command = "AT+PLAY=" + mode.toString();
         writeSerial(command);
         while (waitForResponse) 
         {
