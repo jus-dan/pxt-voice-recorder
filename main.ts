@@ -178,7 +178,23 @@ namespace DFPlayerPro
     export function MP3_control(mode: ControlType): void 
     {
         waitForResponse = true;
-        let command = "AT+PLAY=" + mode.toString();
+        let command = "AT+PLAY=";
+
+        if (mode == ControlType.playPause) 
+        {
+            command = command + "PP";
+        }
+
+        if (mode == ControlType.next) 
+        {
+            command = command + "NEXT";
+        }
+
+        if (mode == ControlType.last) 
+        {
+            command = command + "LAST";
+        }
+
         writeSerial(command);
         while (waitForResponse) 
         {
