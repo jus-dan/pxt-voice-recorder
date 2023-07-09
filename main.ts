@@ -264,7 +264,7 @@ namespace DFPlayerPro
     export function MP3_playFilePathName(pathName: string): void 
     {
         waitForResponse = true;
-        let command = "AT+PLAYFILE=" + pathName;
+        let command = "AT+PLAYFILE=/" + pathName;
         writeSerial(command);
         while (waitForResponse) 
         {
