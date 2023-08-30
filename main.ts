@@ -2,11 +2,11 @@
 * 
 */
 basic.forever(function(){
-    DFVoiceRecPlay.serialListener();
+    VoiceRecPlay.serialListener();
 })
 
 //% weight=0 color=#FF7F24 icon="\uf001" block="VoiceRecPlay"
-namespace DFVoiceRecPlay
+namespace VoiceRecPlay
 {
 
     /**
