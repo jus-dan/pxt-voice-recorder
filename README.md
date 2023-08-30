@@ -1,5 +1,5 @@
 
-> Diese Seite bei [https://jus-dan.github.io/dfplayer-pro/](https://jus-dan.github.io/dfplayer-pro/) öffnen
+> Diese Seite bei [https://github.com/jus-dan/pxt-voice-recorder/](https://github.com/jus-dan/pxt-voice-recorder/) öffnen
 
 ## Als Erweiterung verwenden
 
@@ -8,22 +8,22 @@ Dieses Repository kann als **Erweiterung** in MakeCode hinzugefügt werden.
 * öffne [https://makecode.microbit.org/](https://makecode.microbit.org/)
 * klicke auf **Neues Projekt**
 * klicke auf **Erweiterungen** unter dem Zahnrad-Menü
-* nach **https://github.com/jus-dan/dfplayer-pro** suchen und importieren
+* nach **https://github.com/jus-dan/pxt-voice-recorder** suchen und importieren
 
-## Dieses Projekt bearbeiten ![Build Status Abzeichen](https://github.com/jus-dan/dfplayer-pro/workflows/MakeCode/badge.svg)
+## Dieses Projekt bearbeiten ![Build Status Abzeichen](https://github.com/jus-dan/pxt-voice-recorder/workflows/MakeCode/badge.svg)
 
 Um dieses Repository in MakeCode zu bearbeiten.
 
 * öffne [https://makecode.microbit.org/](https://makecode.microbit.org/)
 * klicke auf **Importieren** und dann auf **Importiere URL**
-* füge **https://github.com/jus-dan/dfplayer-pro** ein und klicke auf Importieren
+* füge **https://github.com/jus-dan/pxt-voice-recorder** ein und klicke auf Importieren
 
 ## Blockvorschau
 
 Dieses Bild zeigt den Blockcode vom letzten Commit im Master an.
 Die Aktualisierung dieses Bildes kann einige Minuten dauern.
 
-![Eine gerenderte Ansicht der Blöcke](https://github.com/jus-dan/dfplayer-pro/raw/master/.github/makecode/blocks.png)
+![Eine gerenderte Ansicht der Blöcke](https://github.com/jus-dan/pxt-voice-recorder/raw/master/.github/makecode/blocks.png)
 
 #### Metadaten (verwendet für Suche, Rendering)
 
