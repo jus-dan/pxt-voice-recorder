@@ -209,7 +209,7 @@ namespace VoiceRecPlay {
 
 
     /**
-     * @param pathName "/test.mp3" or "foldername/song1.mp3"
+     * @param pathName "File0001.MP3" or "foldername/File0001.MP3"
     */
     //% blockId="RecPlay_playFilePathName" block="play filename %pathName"
     //% weight=100 blockGap=20
