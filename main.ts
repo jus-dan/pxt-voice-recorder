@@ -16,9 +16,9 @@ namespace VoiceRecPlay {
     export enum FunctionType {
         //% block="Music mode" blockId="Music mode"
         musicMode = 1,
-        //% block="NEXT" blockId="Recording mode"
+        //% block="Recording mode" blockId="Recording mode"
         recordMode = 2,
-        //% block="LAST" blockId="Slave mode"
+        //% block="Slave mode" blockId="Slave mode"
         slaveMode = 3
     }
 
@@ -169,7 +169,7 @@ namespace VoiceRecPlay {
         waitForResponse = true;
 
         /* store the mode in class */
-        currentFunctionType = mode;
+        //currentFunctionType = mode;
 
         let command = "AT+FUNCTION=" + mode.toString();
         writeSerial(command);
@@ -257,10 +257,8 @@ namespace VoiceRecPlay {
     //% weight=100 blockGap=20
     export function RecPlay_saveRecord(): void {
 
-        /* pause teh record function */
-        RecPlay_record();
 
-        waitForResponse = true;
+        waitForResponse = false;
         let command = "AT+REC=SAVE";
         writeSerial(command);
         while (waitForResponse) {
